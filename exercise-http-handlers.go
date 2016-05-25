@@ -18,6 +18,10 @@ type Struct struct {
 type Handler interface{
 	serveHTTP(ResposeWriter, *Request)//router
 }*/
+/* the declaration of func ListenAndServe
+func ListenAndServe(addr string, handler Handler) error
+*/
+
 
 func (h String) ServeHTTP(
 	w http.ResponseWriter,
@@ -31,9 +35,10 @@ func (h Struct) ServeHTTP(
 }
 
 func main() {
-	a := Struct{"Hello", ":", "Gophers!"}
-	http.Handle("/string", String("I'm a frayed knot."))
-	http.Handle("/struct", &a)
 	// your http.Handle calls here
+	http.Handle("/string", String("I'm a frayed knot."))
+	//http://localhost:4000/sting                          I'm a frayed knot.  
+	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
+	//http://localhost:4000/struct                         Hello:Gophers!  
 	log.Fatal(http.ListenAndServe("localhost:4000", nil))
 }
