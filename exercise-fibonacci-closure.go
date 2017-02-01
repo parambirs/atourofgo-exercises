@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 // fibonacci is a function that returns
 // a function that returns an int.
@@ -11,10 +9,9 @@ func fibonacci() func() int {
 	second := 1
 
 	return func() int {
-		temp := second
-		second += first
-		first = temp
-		return second
+		retVal := first
+		first, second = second, first+second
+		return retVal
 	}
 }
 
@@ -24,17 +21,3 @@ func main() {
 		fmt.Println(f())
 	}
 }
-
-/*
-> go run exercise-fibonacci-closure.go
-1
-2
-3
-5
-8
-13
-21
-34
-55
-89
-*/
