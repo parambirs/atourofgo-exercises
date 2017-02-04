@@ -38,12 +38,8 @@ func Same(t1, t2 *tree.Tree) bool {
       return false
     }
     if !morei || !morej {
-      if morei != morej {
-        return false
-      } else {
-        return true
-      }
-    }
+			return morei == morej
+		}
   }
 }
 
